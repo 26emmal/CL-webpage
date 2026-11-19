@@ -5,7 +5,7 @@
   --comments-bg:  #f6c4cf;  /* comments + chat body */
   --accent:       #d06c83;  /* button, chat header */
   --bubble:       #e3a8b8;  /* chat bubbles */
-  --placeholder:  #aaaaaa;  /* gray image placeholders */
+  --placeholder:  #ffffff;  /* gray image placeholders */
   --banner-bg:    #e6e6e6;
   --text:         #111111;
 }
@@ -72,8 +72,22 @@ img.avatar { background-color: #dcdcdc; border: 1px solid #333; }
   font-weight: 400;
 }
 .tagline {
-  margin: 8px 0 0;
+  margin: 0px 0 0;
   font-size: 0.95rem;
+}
+.last-online {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: #5a4249;
+}
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #7a6f73;   /* gray = offline */
 }
 .btn-message {
   background: var(--accent);
@@ -102,6 +116,7 @@ img.avatar { background-color: #dcdcdc; border: 1px solid #333; }
 .post {
   background: var(--post-bg);
   padding: 16px 16px 14px;
+  margin-bottom: 16px;
 }
 .post-head {
   display: flex;
@@ -109,10 +124,10 @@ img.avatar { background-color: #dcdcdc; border: 1px solid #333; }
   gap: 16px;
   margin-bottom: 26px;
 }
-.post-author { font-size: 0.95rem; }
+.post-author { font-size: 1.05rem; }
 .post-date {
   margin-left: auto;
-  font-size: 1.15rem;
+  font-size: 1.rem;
   padding-right: 6px;
 }
 .post-text {
@@ -131,6 +146,29 @@ img.avatar { background-color: #dcdcdc; border: 1px solid #333; }
   height: 140px;
   object-fit: cover;
   background: var(--placeholder);
+}
+
+.post-head { margin-bottom: 14px; }   /* replaces the earlier 26px gap */
+
+.post-title {
+  margin: 0 8px 6px;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.post-text p { margin: 0 0 10px; }
+.post-text p:last-child { margin-bottom: 0; }
+.post-tags { color: #993556; }
+
+.post-meta {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 6px;
+}
+.post-meta .post-date {
+  margin-left: 0;
+  padding-right: 0;
 }
 
 /* ---------- Comments ---------- */
