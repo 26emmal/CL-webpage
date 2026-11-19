@@ -1,0 +1,337 @@
+/* ---------- Colors (change these to restyle everything) ---------- */
+:root {
+  --page-bg:      #e8b7c3;  /* main pink background */
+  --post-bg:      #f9dcdf;  /* post card */
+  --comments-bg:  #f6c4cf;  /* comments + chat body */
+  --accent:       #d06c83;  /* button, chat header */
+  --bubble:       #e3a8b8;  /* chat bubbles */
+  --placeholder:  #aaaaaa;  /* gray image placeholders */
+  --banner-bg:    #e6e6e6;
+  --text:         #111111;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.4;
+}
+
+img { display: block; max-width: 100%; }
+
+/* ---------- Banner ---------- */
+.banner {
+  height: 280px;
+  background: var(--banner-bg);
+  /* When you have your banner image, uncomment: */
+  /* background: url("banner.jpg") center / cover no-repeat; */
+}
+
+/* ---------- Page layout ---------- */
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 20px 80px;
+}
+
+/* ---------- Avatars (placeholders until you add images) ---------- */
+.avatar {
+  border-radius: 50%;
+  background: var(--placeholder);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+img.avatar { background-color: #dcdcdc; border: 1px solid #333; }
+.avatar-lg { width: 76px; height: 76px; }
+.avatar-sm { width: 40px; height: 40px; }
+.comment .avatar-sm { border: 0; background-color: var(--placeholder); }
+
+/* ---------- Profile header ---------- */
+.profile {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+.profile-top {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.profile h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.tagline {
+  margin: 8px 0 0;
+  font-size: 0.95rem;
+}
+.btn-message {
+  background: var(--accent);
+  color: var(--text);
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 30px;
+  font: inherit;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+.btn-message:hover { filter: brightness(1.08); }
+.btn-message:focus-visible,
+.chat-header:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.bio {
+  margin: 0 0 18px;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Post ---------- */
+.post {
+  background: var(--post-bg);
+  padding: 16px 16px 14px;
+}
+.post-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+.post-author { font-size: 0.95rem; }
+.post-date {
+  margin-left: auto;
+  font-size: 1.15rem;
+  padding-right: 6px;
+}
+.post-text {
+  margin: 0 0 18px;
+  padding: 0 8px;
+}
+.post-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 0 8px;
+  margin-bottom: 18px;
+}
+.post-images img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  background: var(--placeholder);
+}
+
+/* ---------- Comments ---------- */
+.comments {
+  background: var(--comments-bg);
+  padding: 10px 8px 14px;
+}
+.comments h2 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.comment {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.comment-body { flex: 1; min-width: 0; }
+.comment-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+.comment-meta time { font-size: 0.95rem; }
+.comment p {
+  margin: 2px 0 0;
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+/* Reply: indented, with an elbow arrow pointing at it */
+.comment.reply {
+  position: relative;
+  margin-left: 70px;
+}
+.comment.reply::before {
+  content: "";
+  position: absolute;
+  left: -44px;
+  top: -14px;
+  width: 36px;
+  height: 36px;
+  border-left: 1.5px solid #111;
+  border-bottom: 1.5px solid #111;
+}
+.comment.reply::after {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 16px;
+  border: 5px solid transparent;
+  border-left: 7px solid #111;
+}
+
+.comment-form input {
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  background: var(--post-bg);
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+.comment-form input:focus-visible { outline: 2px solid var(--accent); }
+
+/* ---------- Media sidebar ---------- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: start;
+}
+.sidebar-title {
+  margin: 0 0 2px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  align-self: flex-start;
+}
+.media-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: var(--placeholder);
+}
+
+/* ---------- Live chat popup ---------- */
+.chat {
+  position: fixed;
+  right: 24px;
+  bottom: 0;
+  width: 250px;
+  z-index: 50;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 0;
+  background: var(--accent);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 8px 10px;
+  cursor: pointer;
+  text-align: left;
+}
+.chat-caret { transition: transform 0.2s; }
+.chat.collapsed .chat-caret { transform: rotate(180deg); }
+.chat.collapsed .chat-body { display: none; }
+
+.chat-body {
+  background: var(--comments-bg);
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+}
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  scroll-behavior: smooth;
+}
+.chat-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  animation: pop 0.25s ease-out;
+}
+.chat-row.mine { justify-content: flex-end; }
+.chat-row.grouped { margin-top: -4px; }   /* tighter spacing inside a group */
+.chat-pic {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #b97d8f;
+  flex-shrink: 0;
+  align-self: flex-end;
+  visibility: hidden;          /* blank spacer keeps bubbles lined up */
+}
+.chat-pic.show-pic { visibility: visible; }
+.chat-row { align-items: flex-end; }
+.chat-bubble {
+  background: var(--bubble);
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  max-width: 80%;
+  overflow-wrap: anywhere;
+}
+.chat-row.mine .chat-bubble { background: var(--accent); }
+
+.chat-form {
+  display: flex;
+  gap: 6px;
+  padding: 8px;
+  background: var(--post-bg);
+}
+.chat-form input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 0.8rem;
+  background: #fff;
+}
+.chat-form button {
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chat-row { animation: none; }
+  .chat-messages { scroll-behavior: auto; }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 800px) {
+  .page { grid-template-columns: 1fr; gap: 24px; }
+  .sidebar { display: grid; grid-template-columns: 1fr 1fr; }
+  .sidebar-title { grid-column: 1 / -1; }
+  .chat { right: 8px; width: min(250px, calc(100% - 16px)); }
+  .comment.reply { margin-left: 44px; }
+  .comment.reply::before { left: -30px; width: 22px; }
+  .comment.reply::after { left: -8px; }
+}

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>@Aster_Lover’s blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Banner: replace the background color with your image in style.css (.banner) -->
+  <header class="banner" role="img" aria-label="Blog banner"></header>
+
+  <div class="page">
+
+    <!-- ============ MAIN COLUMN ============ -->
+    <main class="main">
+
+      <section class="profile">
+        <!-- Profile picture: add src="your-image.jpg" -->
+        <img class="avatar avatar-lg" src="" alt="" onerror="this.removeAttribute('src')">
+        <div class="profile-info">
+          <div class="profile-top">
+            <h1>@Aster_Lover’s blog</h1>
+            <button class="btn-message" id="btn-message" type="button">Message</button>
+          </div>
+          <p class="tagline">Aster’s number one fan!!!!!!!!!</p>
+        </div>
+      </section>
+
+      <p class="bio">I LOVE ASTER I LOVE ASTER I LOVEI LOVE ASTER I LOVE ASTER I LOVEI LOVE ASTER I LOVE ASTER I LOVEI LOVE ASTER I LOVE</p>
+
+      <!-- ============ POST ============ -->
+      <article class="post">
+        <div class="post-head">
+          <img class="avatar avatar-sm" src="" alt="" onerror="this.removeAttribute('src')">
+          <span class="post-author">@Aster_Lover</span>
+          <time class="post-date" datetime="2025-02-26">Feb 26, 2025</time>
+        </div>
+
+        <p class="post-text">I LOVE ASTER I LOVE ASTER I LOVEI LOVE ASTER I LOVE ASTER I LOVEI LOVE ASTER I LOVE ASTER I LOVEI LOVE ASTER I LOVE ASTER I</p>
+
+        <!-- Post images: add src="your-image.jpg" -->
+        <div class="post-images">
+          <img src="" alt="" onerror="this.removeAttribute('src')">
+          <img src="" alt="" onerror="this.removeAttribute('src')">
+        </div>
+
+        <!-- ============ COMMENTS ============ -->
+        <section class="comments" aria-label="Comments">
+          <h2 id="comments-title">Comments (2)</h2>
+
+          <div id="comment-list">
+            <div class="comment">
+              <img class="avatar avatar-sm" src="" alt="" onerror="this.removeAttribute('src')">
+              <div class="comment-body">
+                <div class="comment-meta">
+                  <span class="comment-author">@Blah</span>
+                  <time datetime="2025-02-27">Feb 27, 2025</time>
+                </div>
+                <p>what? hello....</p>
+              </div>
+            </div>
+
+            <div class="comment reply">
+              <img class="avatar avatar-sm" src="" alt="" onerror="this.removeAttribute('src')">
+              <div class="comment-body">
+                <div class="comment-meta">
+                  <span class="comment-author">@Aster_Lover</span>
+                  <time datetime="2025-02-27">Feb 27, 2025</time>
+                </div>
+                <p>u got a problem?</p>
+              </div>
+            </div>
+          </div>
+
+          <form class="comment-form" id="comment-form" autocomplete="off">
+            <input type="text" id="comment-input" placeholder="Write a comment..." aria-label="Write a comment">
+          </form>
+        </section>
+      </article>
+
+    </main>
+
+    <!-- ============ MEDIA SIDEBAR ============ -->
+    <aside class="sidebar">
+      <h2 class="sidebar-title">Media</h2>
+      <!-- Artworks: add src="your-art.jpg" to each, or copy a <div class="media-item"> to add more -->
+      <div class="media-item"><img src="" alt="" onerror="this.removeAttribute('src')"></div>
+      <div class="media-item"><img src="" alt="" onerror="this.removeAttribute('src')"></div>
+      <div class="media-item"><img src="" alt="" onerror="this.removeAttribute('src')"></div>
+      <div class="media-item"><img src="" alt="" onerror="this.removeAttribute('src')"></div>
+    </aside>
+
+  </div>
+
+  <!-- ============ LIVE CHAT POPUP ============ -->
+  <div class="chat" id="chat">
+    <button class="chat-header" id="chat-toggle" type="button" aria-expanded="true" aria-controls="chat-body">
+      <span>@Aster_Lover</span>
+      <span class="chat-caret" aria-hidden="true">▾</span>
+    </button>
+    <div class="chat-body" id="chat-body">
+      <div class="chat-messages" id="chat-messages" aria-live="polite"></div>
+      <form class="chat-form" id="chat-form" autocomplete="off">
+        <input type="text" id="chat-input" placeholder="Type a message..." aria-label="Type a message">
+        <button type="submit" aria-label="Send message">Send</button>
+      </form>
+    </div>
+  </div>
+
+<script>
+  /* ---------- CHAT ---------- */
+  const messagesEl = document.getElementById('chat-messages');
+  const chatForm   = document.getElementById('chat-form');
+  const chatInput  = document.getElementById('chat-input');
+  const chatEl     = document.getElementById('chat');
+  const toggleBtn  = document.getElementById('chat-toggle');
+
+  // Edit these! They appear one at a time, in order.
+  const preWritten = [
+    'asdkjh asdkjh ASTER ASTER',
+    'buy followers now 100% real!!!',
+    'pls help me',
+    'k4j2 ;;;; qwpoeiru ////',
+    'CLICK HERE >>> w1n b1g <<<',
+    'im trapped',
+    'aster aster aster aster aster',
+    'zzzxxvvbb 0101 0110 0001',
+    'FREE GIFT CARD!!! claim before midnight',
+    'pls help me',
+    'dont look behind the 3rd image',
+    'lkjhgf mnbvc ??? !!',
+    'im trapped in the blog',
+    'u there?? u there?? u there??',
+    'ASTER ASTER 404 ASTER 404',
+    'help me',
+    'hot singles in ur area ASTER',
+    'im still here',
+    'qqqqqwwwww ~~ the post is watching',
+    'pls help me'
+  ];
+  const DELAY_MS = 3500; // time between pre-written messages
+  const MAX_MESSAGES = 40;
+
+  let lastRow = null;   // most recent message row
+
+  let lastSender = null;   // 'them' or 'me'
+
+  // Instagram-style: only the LAST message in a run from the same
+  // sender shows the profile picture; earlier ones keep a blank spacer.
+  function addMessage(text, mine) {
+    const sender = mine ? 'me' : 'them';
+    const row = document.createElement('div');
+    row.className = 'chat-row' + (mine ? ' mine' : '');
+
+    if (!mine) {
+      const pic = document.createElement('span');
+      pic.className = 'chat-pic show-pic';
+      row.appendChild(pic);
+    }
+
+    const bubble = document.createElement('span');
+    bubble.className = 'chat-bubble';
+    bubble.textContent = text;   // textContent keeps user input safe
+    row.appendChild(bubble);
+
+    const prev = messagesEl.lastElementChild;
+    if (prev && lastSender === sender) {
+      row.classList.add('grouped');                       // tighter spacing
+      const prevPic = prev.querySelector('.chat-pic');
+      if (prevPic) prevPic.classList.remove('show-pic');  // hide earlier pic
+    }
+    lastSender = sender;
+
+    messagesEl.appendChild(row);
+    while (messagesEl.children.length > MAX_MESSAGES) {
+      messagesEl.removeChild(messagesEl.firstChild);
+    }
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  let i = 0;
+  const timer = setInterval(() => {
+    if (i >= preWritten.length) { clearInterval(timer); return; }
+    addMessage(preWritten[i++], false);
+  }, DELAY_MS);
+
+  chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = chatInput.value.trim();
+    if (!text) return;
+    addMessage(text, true);
+    chatInput.value = '';
+  });
+
+  function setChatOpen(open) {
+    chatEl.classList.toggle('collapsed', !open);
+    toggleBtn.setAttribute('aria-expanded', String(open));
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    setChatOpen(chatEl.classList.contains('collapsed'));
+  });
+
+  // "Message" button opens the chat if it's closed (it starts open)
+  document.getElementById('btn-message').addEventListener('click', () => {
+    setChatOpen(true);
+    chatInput.focus();
+  });
+
+  /* ---------- COMMENTS ---------- */
+  const commentForm  = document.getElementById('comment-form');
+  const commentInput = document.getElementById('comment-input');
+  const commentList  = document.getElementById('comment-list');
+  const commentTitle = document.getElementById('comments-title');
+  let commentCount = 2;
+
+  commentForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = commentInput.value.trim();
+    if (!text) return;
+
+    const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    const wrap = document.createElement('div');
+    wrap.className = 'comment';
+    wrap.innerHTML =
+      '<span class="avatar avatar-sm"></span>' +
+      '<div class="comment-body"><div class="comment-meta"><span class="comment-author"></span><time></time></div><p></p></div>';
+    wrap.querySelector('.comment-author').textContent = '@You';
+    wrap.querySelector('time').textContent = date;
+    wrap.querySelector('p').textContent = text;
+
+    commentList.appendChild(wrap);
+    commentTitle.textContent = 'Comments (' + (++commentCount) + ')';
+    commentInput.value = '';
+  });
+</script>
+</body>
+</html>
