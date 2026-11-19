@@ -28,7 +28,7 @@ img { display: block; max-width: 100%; }
   height: 280px;
   background: var(--banner-bg);
   /* When you have your banner image, uncomment: */
-  /* background: url("banner.jpg") center / cover no-repeat; */
+  background: url("assets/banner.jpg") center / cover no-repeat; */
 }
 
 /* ---------- Page layout ---------- */
