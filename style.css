@@ -1,11 +1,12 @@
 /* ---------- Colors (change these to restyle everything) ---------- */
 :root {
-  --page-bg:      #e8b7c3;  /* main pink background */
-  --post-bg:      #f9dcdf;  /* post card */
-  --comments-bg:  #f6c4cf;  /* comments + chat body */
-  --accent:       #d06c83;  /* button, chat header */
-  --bubble:       #e3a8b8;  /* chat bubbles */
-  --placeholder:  #ffffff;  /* gray image placeholders */
+  --page-bg:      #ffbed3;  /* main background */
+  --post-bg:      #ffe0ea;  /* post cards */
+  --comments-bg:  #ffc6d8;  /* comments + chat body */
+  --accent:       #ff6f9c;  /* button, chat header, pinned line */
+  --bubble:       #ffa3c0;  /* chat bubbles */
+  --tag:          #c2255c;  /* hashtags + pinned label */
+  --placeholder:  #ffbed3;
   --banner-bg:    #e6e6e6;
   --text:         #111111;
 }
@@ -45,6 +46,7 @@ img { display: block; max-width: 100%; }
 .avatar {
   border-radius: 50%;
   background: var(--placeholder);
+  background: url("assets/pfp.png") center / cover no-repeat; */
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -159,16 +161,13 @@ img.avatar { background-color: #dcdcdc; border: 1px solid #333; }
 .post-text p:last-child { margin-bottom: 0; }
 .post-tags { color: #993556; }
 
-.post-meta {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-right: 6px;
-}
-.post-meta .post-date {
-  margin-left: 0;
-  padding-right: 0;
+.pinned-label {
+  margin: 0 8px 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--tag);
 }
 
 /* ---------- Comments ---------- */
@@ -251,7 +250,6 @@ img.avatar { background-color: #dcdcdc; border: 1px solid #333; }
 }
 .media-item img {
   width: 100%;
-  aspect-ratio: 1 / 1;
   object-fit: cover;
   background: var(--placeholder);
 }
@@ -259,9 +257,9 @@ img.avatar { background-color: #dcdcdc; border: 1px solid #333; }
 /* ---------- Live chat popup ---------- */
 .chat {
   position: fixed;
-  right: 24px;
+  right: 20px;
   bottom: 0;
-  width: 250px;
+  width: 280px;
   z-index: 50;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
@@ -308,6 +306,8 @@ img.avatar { background-color: #dcdcdc; border: 1px solid #333; }
 .chat-row.mine { justify-content: flex-end; }
 .chat-row.grouped { margin-top: -4px; }   /* tighter spacing inside a group */
 .chat-pic {
+  object-fit: cover;
+  display: block;
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -322,7 +322,7 @@ img.avatar { background-color: #dcdcdc; border: 1px solid #333; }
   background: var(--bubble);
   border-radius: 16px;
   padding: 4px 12px;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   max-width: 80%;
   overflow-wrap: anywhere;
 }
