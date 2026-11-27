@@ -257,7 +257,7 @@ img.avatar { background-color: #dcdcdc; border: 1px solid #333; }
 /* ---------- Live chat popup ---------- */
 .chat {
   position: fixed;
-  right: 20px;
+  right: 30px;
   bottom: 0;
   width: 320px;
   z-index: 50;
